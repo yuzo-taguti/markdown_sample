@@ -4,7 +4,7 @@ module ApplicationHelper
 
     class HTMLwithCoderay < Redcarpet::Render::HTML
       def block_code(code, language)
-        language = language.sprit(':')[0] if language?
+        language = language.split(':')[0] if language.present?
 
         case language.to_s
         when 'rb'
@@ -21,7 +21,7 @@ module ApplicationHelper
           lamg = language
         end
 
-        CodeRay.scan(code, lamg).div
+        CodeRay.scan(code, lang).div
       end
     end
 
